@@ -34,7 +34,7 @@ export default createStore({
     // 持久化
     createPersistedstate({
       key: 'saveInfo',
-      paths: ['info'],
+      // paths: ['info'],
     }),
   ],
 })

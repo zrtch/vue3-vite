@@ -19,7 +19,7 @@ const handleClick = () => {
   <div>异步修改state:{{ $store.state.info.age }}</div>
   <span>----------------------------</span>
   <div>getter数据：{{ $store.getters['format'] }}</div>
-  <button type="button" @click="handleClick">按钮</button>
+  <el-button type="primary" @click="handleClick">修改</el-button>
 </template>
 
 <style scoped></style>
