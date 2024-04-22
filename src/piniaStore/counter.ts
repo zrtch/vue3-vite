@@ -8,6 +8,7 @@ export const useCounterStore = defineStore('counter', {
     count: 0,
     name: 'kobe',
     users: [{ name: 'jame', id: 2 }],
+    obj: { id: 3 },
   }),
   getters: {
     doubleCount: (state) => state.count * 2,
@@ -40,6 +41,20 @@ export const useCounterStore = defineStore('counter', {
       }
     },
   },
+  // 表示开启持久化保存
+  persist: [
+    {
+      // 设置 key 、指定保存内容
+      key: 'counter',
+      paths: ['count', 'obj.id'],
+      storage: localStorage,
+    },
+    {
+      paths: ['obj'],
+      // 设置不同的本地存储方式
+      storage: sessionStorage,
+    },
+  ],
 })
 
 // 组合式存储

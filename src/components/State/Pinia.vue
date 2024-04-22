@@ -20,16 +20,26 @@
     <el-divider />
     <p>Action 相当于组件中的 methos。定义业务逻辑的完美选择</p>
     <el-button type="primary" @click="handleLogin">登录</el-button>
+
+    <el-divider />
+    <p>数据持久化：pinia-plugin-persistedstate</p>
+    <span> cookie: {{ cookie.accessToken }} </span>
+    <el-button type="primary" @click="cookie.handleChange('857857857')"
+      >Cookie</el-button
+    >
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { useCounterStore } from '@/piniaStore/counter'
+import { useCookie } from '@/piniaStore/cookie'
 import { storeToRefs } from 'pinia'
 const store = useCounterStore()
 const { count, name, doubleCount, getName } = storeToRefs(store)
 const { increment } = store
+
+const cookie = useCookie()
 
 // 变更state & 替换state。它允许你用一个 state 的补丁对象在同一时间更改多个属性。
 const patch = () => {
@@ -53,7 +63,7 @@ store.$subscribe((mutation, state) => {
   mutation.payload // 传递给 store.$patch() 的补丁对象。
 
   // 每当状态发生变化时，将整个 state 持久化到本地存储。
-  localStorage.setItem('counter', JSON.stringify(state))
+  // localStorage.setItem('counter', JSON.stringify(state))
 })
 
 // 使用 setup() 时的用法,直接访问任何 getter(与 state 属性完全一样)
